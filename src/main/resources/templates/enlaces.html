@@ -1,0 +1,81 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Movie Time</title>
+</head>
+<body style="background-image: url('https://fandomwire.com/wp-content/uploads/2018/08/Movies-background.png');">
+
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark pt-2">
+		<div class="container-fluid">
+			<a class="navbar-brand" th:href="@{/main}"> 
+				Movie Time
+			</a>
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+				aria-controls="navbarNavAltMarkup" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="navbar-collapse" id="navbarNavAltMarkup">
+				<div class="navbar-nav">
+					<a class="nav-link" th:href="@{/contenido/peliculas}">Peliculas</a>
+					<a class="nav-link" th:href="@{/contenido/series}">Series</a>
+					<a class="nav-link"	th:href="@{/usuario/perfil}" >Perfil</a>
+					<a class="nav-link  btn btn-success" th:href="@{/contenido/addVista}"
+						style="color: white;" href="#">ADD</a>
+				</div>
+			</div>
+		</div>
+	</nav>
+
+	<div class="container">
+		<div class="card"
+			style="margin-top: 15%; margin-left: 35%; width: 35%">
+			<h5 class="card-header">ADD ENLACE</h5>
+			<div class="card-body">
+				<form action="#" th:object="${enlace}" method="GET"
+					th:action="@{/contenido/enlaces/add}" class="form-horizontal">
+					
+					<input type="text" class="form-control" id="pelicula" hidden th:field="*{idPelicula}"
+							placeholder="" style="width: 20em;" /> 
+					
+					<div class="form-group">							
+							<label for="plataforma" class="control-label col-xs-2">Plataforma </label>
+							<input type="text" class="form-control" id="plataforma" th:field="*{plataforma}"
+							placeholder="" style="width: 20em;" /> 
+
+					</div>
+
+					<div class="form-group">
+						<label for="link" class="control-label col-xs-2">link </label>
+						<input	type="text" class="form-control" id="link" th:field="*{link}"
+						placeholder="" style="width: 20em;" /> 
+
+					</div>
+
+					<!--  Submit button -->
+					<div class="form-group">
+						<div class="col-xs-offset-2 col-xs-10">
+							<button type="submit" class="btn btn-primary">GUARDAR</button>
+						</div>
+					</div>
+					<div class="form-group">
+						<span th:text="${mensaje}"></span>
+					</div>
+				</form>
+			</div>
+		</div>
+
+
+</body>
+</html>

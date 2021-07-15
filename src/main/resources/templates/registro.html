@@ -1,0 +1,70 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Movie Time</title>
+</head>
+<body style="background-image: url('https://fandomwire.com/wp-content/uploads/2018/08/Movies-background.png');">
+
+	<nav class="navbar navbar-dark bg-dark">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#"> 
+				Movie Time
+			</a>
+		</div>
+	</nav>
+
+	<div class="container">
+		<div class="card"
+			style="margin-top: 15%; margin-left: 35%; width: 35%">
+			<h5 class="card-header">Bienvenido</h5>
+			<div class="card-body">
+				<form action="#" th:object="${usuario}" method="GET"
+					th:action="@{/usuario/registrar}" class="form-horizontal">
+					
+					<div class="form-group">
+						<label for="name" class="control-label col-xs-2">Nombre </label> <input
+							type="text" class="form-control" id="name" th:field="*{username}"
+							placeholder="" style="width: 20em;" /> 
+							
+					</div>
+					
+					<div class="form-group">							
+							<label for="email" class="control-label col-xs-2">Email </label> <input
+							type="email" class="form-control" id="name" th:field="*{email}"
+							placeholder="" style="width: 20em;" /> 
+
+					</div>
+
+					<div class="form-group">
+						<label for="password" class="control-label col-xs-2">Password </label> <input
+							type="password" class="form-control" id="name" th:field="*{password}"
+							placeholder="" style="width: 20em;" /> 
+
+					</div>
+
+					<!--  Submit button -->
+					<div class="form-group">
+						<div class="col-xs-offset-2 col-xs-10">
+							<button type="submit" class="btn btn-primary">ENTRAR</button>
+						
+							<a th:href="@{/}" class="btn btn-danger">BACK</a>
+						</div>
+					</div>
+					<div class="form-group">
+						<span th:text="${mensaje}"></span>
+					</div>
+				</form>
+			</div>
+		</div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Movie Time</title>
+</head>
+<body style="background-image: url('https://fandomwire.com/wp-content/uploads/2018/08/Movies-background.png');">
+
+	<nav class="navbar navbar-dark bg-dark">
+		<div class="container-fluid">
+			<a class="navbar-brand" th:href="@{/main}"> 
+				Movie Time
+			</a>
+		</div>
+	</nav>
+
+	<div class="container">
+		<div class="card" style="margin-top:20%; margin-left:25%; width:50%">
+			<h5 class="card-header">Bienvenido</h5>
+			<div class="card-body">
+				<h5 class="card-title mb-3">Comienza ya!</h5>
+				<a th:href="@{/usuario/registro}" class="btn btn-warning btn-lg">REGISTRO</a>
+				<a th:href="@{/usuario/login}" class="btn btn-info btn-lg">LOGIN</a>
+			</div>
+		</div>
+</body>
+</html>

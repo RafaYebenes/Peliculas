@@ -1,0 +1,114 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Movie Time</title>
+</head>
+<body style="background-image: url('https://fandomwire.com/wp-content/uploads/2018/08/Movies-background.png');">
+
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<div class="container-fluid">
+
+			<a class="navbar-brand" th:href="@{/main}">
+				Movie Time
+			</a>
+
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/contenido/peliculas}">Peliculas</a></li>
+
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/contenido/series}">Series</a></li>
+						
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/usuario/perfil}" >Perfil</a></li>
+
+					<li class="nav-item"><a class="nav-link  btn btn-success"
+						th:if="${usuario.rol== 'admin'}" th:href="@{/contenido/addVista}"
+						style="color: white;" href="#">ADD</a></li>
+						
+				</ul>
+				<form class="input-group" style="margin-left: 20%;" action="#"
+					th:object="${busqueda}" method="get" enctype="multipart/form-data"
+					th:action="@{/contenido/buscar}">
+
+					<input class="form-control" type="search" placeholder="Busqueda"
+						aria-label="Search" th:field="*{name}">
+					<button class="btn btn-outline-success ml-2" type="submit">Buscar</button>
+					
+					<a class="nav-link  btn btn-danger right"
+						th:href="@{/usuario/logOut}"
+						style="color: white; margin-left: 30%;" href="#">LOGOUT</a>
+				</form>
+
+			</div>
+		</div>
+	</nav>
+
+
+
+
+
+	<div class="container">
+
+		<div class="row  mb-5 border bg-light rounded-pill border-4 " th:if="${genero != null}">
+			<form class=" input-group mt-2 mb-1" style="margin-left: 20%;" action="#"
+							th:object="${busqueda}" method="get"
+							enctype="multipart/form-data" th:action="@{/contenido/filtrar}">
+					<div class="col" style="margin-left:15%;">
+						<select name="comboGenero" class="form-select ml-2" id="comboGenero" th:field="*{genero}">	
+								<option th:value="todos">GENERO</option>
+								<option th:each="g : ${genero}" th:value="${g.name}"
+									th:text="${g.name}"></option>
+
+						</select>	
+					
+						<label for="name" class="control-label ml-2 ">Puntuacion:
+								&nbsp;</label>
+								<input type="number" th:field="*{puntuacion}" min="0" max="10" step="1" value="0"  />
+								
+						<button type="submit" class="btn btn-outline-primary btn-sm mb-1 ml-3">Filtrar</button>
+						
+					</div>
+						
+			</form>
+			</div>
+		</div>
+	
+		<div class="row mt-5 ml-3">
+			<div class="col-md-auto m-2" th:each="c : ${contenido}">
+				<div class="card" style="width: 18rem;">
+					<img th:src="${c.caratula}"
+						class="card-img-top" alt="...">
+					<div class="card-body">
+						<h5 class="card-title" th:text="${c.name}"></h5>
+						<p class="card-text" th:text="${c.descripcion}"></p>
+						<a th:if="${c.esSerie == true}" th:href="@{|/contenido/${c.id}|}"
+							class="btn btn-primary">Ver Serie</a> <a
+							th:if="${c.esPelicula == true}" th:href="@{|/contenido/${c.id}|}"
+							class="btn btn-primary">Ver Pelicula</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</body>
+</html>
